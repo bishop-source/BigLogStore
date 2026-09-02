@@ -1,12 +1,826 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BIGLOGSTORE — Premium Digital Services</title><link rel="stylesheet" href="styles.css"></head><body>
-<header><a class="brand" href="#home"><b>B</b> BIGLOGSTORE</a><nav><a href="#home">Home</a><a href="#marketplace">Marketplace</a><a href="#orders">My Orders</a><a href="#wallet">Wallet</a><a href="#support">Support</a></nav><a class="shop" href="#marketplace">Shop Now</a></header>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIGLOGSTORE — Premium Digital Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070909;
+  --panel:#0d1110;
+  --panel2:#111514;
+  --gold:#e8b93f;
+  --gold2:#ffd968;
+  --text:#f5f5f3;
+  --muted:#8e9794;
+  --line:#242b28;
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 75% 5%,rgba(105,77,13,.16),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+header{
+  height:82px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(5,7,7,.94);
+  border-bottom:1px solid #1d211f;
+  backdrop-filter:blur(18px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-.5px;
+}
+
+.brand-mark{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  font-size:22px;
+  font-weight:800;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  color:#aeb4b1;
+  font-size:14px;
+}
+
+nav a:hover{
+  color:var(--gold2);
+}
+
+.shop-btn{
+  border:1px solid #765a18;
+  padding:12px 20px;
+  border-radius:9px;
+  color:var(--gold2);
+  font-weight:700;
+  font-size:13px;
+}
+
+.hero{
+  min-height:610px;
+  padding:85px 6%;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:50px;
+  overflow:hidden;
+}
+
+.eyebrow{
+  color:var(--gold2);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.hero h1{
+  max-width:780px;
+  margin:20px 0;
+  font-size:clamp(52px,6.2vw,88px);
+  line-height:.98;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  color:var(--gold2);
+}
+
+.hero p{
+  max-width:650px;
+  color:#8f9996;
+  font-size:16px;
+  line-height:1.8;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+}
+
+.primary{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:14px 23px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#ffd45b,#c38d1b);
+  color:#080808;
+  font-weight:800;
+  font-size:13px;
+}
+
+.secondary{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:13px 22px;
+  border-radius:9px;
+  border:1px solid #5f4b19;
+  color:var(--gold2);
+  font-weight:700;
+  font-size:13px;
+}
+
+.hero-art{
+  min-height:400px;
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+
+.hero-circle{
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  border:1px solid #715619;
+  position:absolute;
+  box-shadow:0 0 100px rgba(176,130,26,.08);
+}
+
+.hero-card{
+  width:270px;
+  height:300px;
+  border:1px solid #6e551d;
+  border-radius:18px;
+  background:linear-gradient(145deg,#151a18,#080b0a);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  box-shadow:0 35px 80px #000;
+}
+
+.hero-logo{
+  width:85px;
+  height:85px;
+  border:1px solid #8b6b22;
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+  font-size:48px;
+  font-weight:800;
+  margin-bottom:25px;
+}
+
+.hero-card strong{
+  font-size:21px;
+}
+
+.hero-card small{
+  margin-top:8px;
+  color:#777f7c;
+  letter-spacing:1.5px;
+}
+
+.trust{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  padding:0 6% 65px;
+}
+
+.trust div{
+  border:1px solid var(--line);
+  background:#0b0e0d;
+  border-radius:12px;
+  padding:18px;
+}
+
+.trust b{
+  display:block;
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+.trust small{
+  color:#737b78;
+}
+
+.marketplace{
+  margin:0 4%;
+  padding:70px 2.5%;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:linear-gradient(145deg,#0d1110,#090b0b);
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:25px;
+  margin-bottom:30px;
+}
+
+.section-head h2,
+.how h2,
+.support h2,
+.wallet h2,
+.orders h2{
+  margin:10px 0;
+  font-size:42px;
+  letter-spacing:-1.5px;
+}
+
+.section-head h2 span,
+.how h2 span,
+.support h2 span,
+.wallet h2 span,
+.orders h2 span{
+  color:var(--gold2);
+}
+
+.search{
+  width:280px;
+  padding:14px 17px;
+  border:1px solid #303633;
+  border-radius:9px;
+  background:#111514;
+  color:white;
+  outline:none;
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:25px;
+}
+
+.filter{
+  border:1px solid #303633;
+  background:#101312;
+  color:#9ca39f;
+  padding:9px 15px;
+  border-radius:999px;
+  cursor:pointer;
+}
+
+.filter.active,
+.filter:hover{
+  border-color:#80631c;
+  color:var(--gold2);
+}
+
+.grid,
+#grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+}
+
+.product{
+  min-height:285px;
+  padding:24px;
+  border:1px solid #222927;
+  border-radius:17px;
+  background:linear-gradient(180deg,#101514,#0b0e0d);
+  display:flex;
+  flex-direction:column;
+  transition:.2s ease;
+}
+
+.product:hover{
+  transform:translateY(-4px);
+  border-color:#765a1b;
+  box-shadow:0 20px 45px #000;
+}
+
+.product-icon{
+  width:72px;
+  height:72px;
+  border-radius:16px;
+  border:1px solid #5a4618;
+  background:#080b0a;
+  display:grid;
+  place-items:center;
+  margin-bottom:18px;
+  overflow:hidden;
+}
+
+.product-icon img{
+  width:54px;
+  height:54px;
+  object-fit:contain;
+}
+
+.product h3{
+  margin:0 0 8px;
+  font-size:16px;
+}
+
+.product p{
+  margin:0;
+  color:#818a86;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.product-bottom{
+  margin-top:auto;
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.price{
+  color:var(--gold2);
+  font-weight:800;
+}
+
+.view{
+  border:1px solid #705619;
+  border-radius:8px;
+  padding:10px 14px;
+  color:var(--gold2);
+  font-size:11px;
+  font-weight:800;
+}
+
+.how,
+.orders,
+.wallet{
+  padding:100px 6%;
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:35px;
+}
+
+.steps article{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#0d1110;
+  padding:30px;
+}
+
+.steps b{
+  color:var(--gold2);
+  font-size:12px;
+}
+
+.steps h3{
+  margin:20px 0 10px;
+}
+
+.steps p{
+  color:#858d8a;
+  line-height:1.7;
+  font-size:13px;
+}
+
+.orders-box,
+.wallet-card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#0d1110;
+  padding:35px;
+}
+
+.orders-list{
+  color:#7f8784;
+  line-height:2;
+}
+
+.wallet-card{
+  max-width:600px;
+}
+
+.balance{
+  font-size:42px;
+  font-weight:800;
+  color:var(--gold2);
+  margin:15px 0;
+}
+
+.support{
+  margin:0 5% 80px;
+  padding:45px;
+  border:1px solid #4d3b16;
+  border-radius:20px;
+  background:linear-gradient(120deg,#12130f,#0c100e);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.support p{
+  color:#818a86;
+}
+
+footer{
+  border-top:1px solid #202522;
+  padding:35px 6%;
+  display:flex;
+  justify-content:space-between;
+  color:#656d69;
+  font-size:12px;
+}
+
+footer strong{
+  color:var(--gold2);
+  font-size:15px;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(8px);
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modalbox{
+  width:min(560px,100%);
+  padding:32px;
+  border:1px solid #80621d;
+  border-radius:20px;
+  background:linear-gradient(145deg,#151a18,#090b0a);
+  position:relative;
+}
+
+.x{
+  position:absolute;
+  right:17px;
+  top:12px;
+  border:0;
+  background:none;
+  color:#8b918e;
+  font-size:28px;
+  cursor:pointer;
+}
+
+#mi{
+  font-size:34px;
+  color:var(--gold2);
+}
+
+#mn{
+  font-size:27px;
+  margin:15px 0 8px;
+}
+
+#md{
+  color:#929a96;
+  line-height:1.7;
+}
+
+#mp{
+  color:var(--gold2);
+  font-size:24px;
+  font-weight:800;
+  margin:20px 0;
+}
+
+@media(max-width:1100px){
+  .grid,#grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:750px){
+  header{
+    padding:0 20px;
+  }
+
+  .hero{
+    padding:60px 22px;
+  }
+
+  .hero h1{
+    font-size:53px;
+    letter-spacing:-2px;
+  }
+
+  .hero-art{
+    display:none;
+  }
+
+  .trust{
+    grid-template-columns:1fr;
+    padding:0 22px 50px;
+  }
+
+  .marketplace{
+    margin:0 12px;
+    padding:45px 18px;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .search{
+    width:100%;
+    margin-top:20px;
+  }
+
+  .grid,#grid{
+    grid-template-columns:1fr;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .support{
+    margin:0 12px 50px;
+    display:block;
+    padding:30px;
+  }
+
+  footer{
+    display:block;
+  }
+
+  footer p{
+    margin-top:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="brand" href="#home">
+    <span class="brand-mark">B</span>
+    <span>BIGLOGSTORE</span>
+  </a>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#marketplace">Marketplace</a>
+    <a href="#orders">My Orders</a>
+    <a href="#wallet">Wallet</a>
+    <a href="#support">Support</a>
+  </nav>
+
+  <a class="shop-btn" href="#marketplace">Shop Now</a>
+</header>
+
 <main>
-<section id="home" class="hero"><div><small>BIGGER BEGINNINGS</small><h1>Premium Digital<br><span>Services, Delivered</span><br>Instantly.</h1><p>Trusted digital services with clear pricing, secure checkout and direct customer support.</p><a class="btn" href="#marketplace">Shop Marketplace →</a><a class="btn ghost" href="#how">How It Works</a></div><div class="art"><div class="ring"></div><div class="bag">B</div><div class="badge">24/7<small>SUPPORT</small></div></div></section>
-<section class="trust"><div>♧<b>Instant Delivery</b><small>Fast & reliable</small></div><div>◇<b>Secure Payments</b><small>Protected checkout</small></div><div>✦<b>Trusted Services</b><small>Quality you can trust</small></div><div>◉<b>24/7 Support</b><small>We're here for you</small></div></section>
-<section id="marketplace" class="panel"><div class="head"><div><small>MARKETPLACE</small><h2>Find your <span>service.</span></h2></div><input id="search" placeholder="Search services..."></div><div id="filters"></div><div id="grid"></div></section>
-<section id="how" class="how"><small>SIMPLE PROCESS</small><h2>How It <span>Works</span></h2><div class="steps"><article><b>01</b><h3>Choose a service</h3><p>Browse the marketplace and select what you need.</p></article><article><b>02</b><h3>Fund your wallet</h3><p>Add the amount required using an available method.</p></article><article><b>03</b><h3>Place your order</h3><p>Confirm your purchase and follow your order.</p></article></div></section>
-<section id="orders" class="panel"><small>ORDER HISTORY</small><h2>My <span>Orders</span></h2><div class="orders"><div>NordVPN (High)<span>₦7,500</span><em>Completed</em></div><div>Instagram Services<span>₦5,200</span><em>Completed</em></div><div>TikTok Services<span>₦4,270</span><i>Pending</i></div></div></section>
-<section id="wallet" class="wallet"><div class="wallet-card"><small>WALLET</small><h2>Fund your <span>wallet.</span></h2><p>Choose an amount or enter a custom amount.</p><div class="amounts"><button onclick="amt(5000)">₦5,000</button><button onclick="amt(10000)">₦10,000</button><button onclick="amt(20000)">₦20,000</button><button onclick="amt(50000)">₦50,000</button></div><input id="amount" value="10000"><button class="btn full" onclick="fund()">🔒 Proceed to Pay</button></div><div class="wallet-art">₦<h3>Simple. Secure. Fast.</h3><p>Your balance stays ready for your next purchase.</p></div></section>
-<section id="support" class="support"><div><small>24/7 CUSTOMER SUPPORT</small><h2>Need help? <span>We're here.</span></h2><p>Connect with BIGLOGSTORE support.</p></div><a class="btn" href="https://t.me/biglogs1" target="_blank" rel="noopener">Chat on Telegram →</a></section></main>
-<footer><b>BIGLOGSTORE</b><span>© 2026 BIGLOGSTORE. All rights reserved.</span></footer>
-<div id="modal" class="modal"><div class="modalbox"><button class="x" onclick="closeModal()">×</button><div id="mi" class="mi"></div><small>SERVICE DETAILS</small><h2 id="mt"></h2><p id="md"></p><strong id="mp"></strong><div id="mo"></div><button class="btn full" onclick="buy()">Buy Now →</button></div></div><div id="toast"></div><script src="script.js"></script></body></html>
+
+<section id="home" class="hero">
+  <div>
+    <small class="eyebrow">BIGGER BEGINNINGS</small>
+
+    <h1>
+      Premium Digital
+      <span>Services, Delivered</span>
+      Instantly.
+    </h1>
+
+    <p>
+      Trusted digital services with clear pricing, secure checkout
+      and direct customer support.
+    </p>
+
+    <div class="hero-buttons">
+      <a class="primary" href="#marketplace">Shop Marketplace →</a>
+      <a class="secondary" href="#how">How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-art">
+    <div class="hero-circle"></div>
+
+    <div class="hero-card">
+      <div class="hero-logo">B</div>
+      <strong>BIGLOGSTORE</strong>
+      <small>PREMIUM DIGITAL SERVICES</small>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div>
+    <b>Instant Delivery</b>
+    <small>Fast & reliable service</small>
+  </div>
+
+  <div>
+    <b>Secure Payments</b>
+    <small>Protected checkout process</small>
+  </div>
+
+  <div>
+    <b>Trusted Services</b>
+    <small>Quality service options</small>
+  </div>
+</section>
+
+<section id="marketplace" class="marketplace">
+
+  <div class="section-head">
+    <div>
+      <small class="eyebrow">MARKETPLACE</small>
+      <h2>Find your <span>service.</span></h2>
+    </div>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Search products..."
+      aria-label="Search products"
+    >
+  </div>
+
+  <div id="filters" class="filters"></div>
+
+  <div id="grid" class="grid"></div>
+
+</section>
+
+<section id="how" class="how">
+  <small class="eyebrow">SIMPLE PROCESS</small>
+  <h2>How It <span>Works</span></h2>
+
+  <div class="steps">
+
+    <article>
+      <b>01</b>
+      <h3>Choose a Product</h3>
+      <p>
+        Browse the marketplace and select the digital service you want.
+      </p>
+    </article>
+
+    <article>
+      <b>02</b>
+      <h3>Check Your Wallet</h3>
+      <p>
+        Make sure your wallet has enough balance for the purchase.
+      </p>
+    </article>
+
+    <article>
+      <b>03</b>
+      <h3>Place Your Order</h3>
+      <p>
+        Complete the purchase and receive your order details.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<section id="orders" class="orders">
+  <small class="eyebrow">ORDER HISTORY</small>
+  <h2>My <span>Orders</span></h2>
+
+  <div class="orders-box">
+    <div class="orders-list">
+      Your completed purchases and order details will appear here.
+    </div>
+  </div>
+</section>
+
+<section id="wallet" class="wallet">
+  <div class="wallet-card">
+    <small class="eyebrow">WALLET</small>
+    <h2>Fund your <span>wallet.</span></h2>
+
+    <p>
+      Add money to your wallet and use your balance to purchase
+      available digital services.
+    </p>
+
+    <div class="balance">₦0.00</div>
+
+    <a class="primary" href="#support">Fund Wallet →</a>
+  </div>
+</section>
+
+<section id="support" class="support">
+  <div>
+    <small class="eyebrow">24/7 CUSTOMER SUPPORT</small>
+    <h2>Need help? <span>We're here.</span></h2>
+    <p>Contact BigLogStore support whenever you need assistance.</p>
+  </div>
+
+  <a
+    class="primary"
+    href="https://t.me/biglogs1"
+    target="_blank"
+    rel="noopener"
+  >
+    Contact Support →
+  </a>
+</section>
+
+</main>
+
+<footer>
+  <strong>BIGLOGSTORE</strong>
+  <span>© 2026 BIGLOGSTORE. All rights reserved.</span>
+</footer>
+
+<div id="modal" class="modal">
+  <div class="modalbox">
+
+    <button class="x" onclick="closeModal()">×</button>
+
+    <div id="mi"></div>
+    <h3 id="mn">Product</h3>
+    <p id="md"></p>
+    <div id="mp"></div>
+
+    <div id="modalContent"></div>
+
+    <a
+      class="primary"
+      href="https://t.me/biglogs1"
+      target="_blank"
+      rel="noopener"
+    >
+      ORDER / CONTACT SUPPORT →
+    </a>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+function closeModal(){
+  const modal=document.getElementById("modal");
+  if(modal) modal.classList.remove("open");
+}
+
+document.addEventListener("click",function(e){
+  const modal=document.getElementById("modal");
+
+  if(e.target===modal){
+    closeModal();
+  }
+});
+</script>
+
+</body>
+</html>
